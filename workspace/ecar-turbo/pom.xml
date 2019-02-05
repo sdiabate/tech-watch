@@ -26,6 +26,7 @@
 		<module>config</module>
 		<module>discovery</module>
 		<module>acquisition</module>
+		<module>distribution</module>
 	</modules>
 
 	<dependencyManagement>

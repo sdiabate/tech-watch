@@ -8,9 +8,9 @@
 		<artifactId>ecar-turbo</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>acquisition</artifactId>
-	<name>acquisition</name>
-	<description>Acquisition module</description>
+	<artifactId>distribution</artifactId>
+	<name>distribution</name>
+	<description>Distribution module</description>
 
 	<dependencies>
 		<dependency>
