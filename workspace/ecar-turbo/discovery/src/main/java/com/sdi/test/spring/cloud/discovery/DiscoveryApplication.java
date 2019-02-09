@@ -1,4 +1,4 @@
-package com.sdi.test.spring.cloud.acquisition;
+package com.sdi.test.spring.cloud.discovery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

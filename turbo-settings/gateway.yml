@@ -1,0 +1,23 @@
+server:
+  port: 8083
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8082/eureka/
+    register-with-eureka: false
+    fetch-registry: false
+      
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: distribution
+        uri: lb://distribution
+        predicates:
+        - Path=/referential/**
+        filters:
+        - RewritePath=referential/(?.*), /$\{path}

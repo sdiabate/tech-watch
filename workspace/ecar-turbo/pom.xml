@@ -23,10 +23,12 @@
 	</properties>
 
 	<modules>
+		<module>turbo-api</module>
 		<module>config</module>
 		<module>discovery</module>
 		<module>acquisition</module>
 		<module>distribution</module>
+		<module>gateway</module>
 	</modules>
 
 	<dependencyManagement>
@@ -34,9 +36,15 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Finchley.SR2</version>
+				<version>${spring-cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>1.18.4</version>
+				<scope>provided</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
