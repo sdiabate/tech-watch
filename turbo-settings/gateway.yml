@@ -1,12 +1,18 @@
 server:
   port: 8083
+  role: Gateway
+  
+management:
+  endpoints:
+    web.exposure:
+      include: \*
   
 eureka:
   client:
+    region: default
+    registryFetchIntervalSeconds: 5
     serviceUrl:
       defaultZone: http://localhost:8082/eureka/
-    register-with-eureka: false
-    fetch-registry: false
       
 spring:
   cloud:
@@ -15,9 +21,15 @@ spring:
         locator:
           enabled: true
       routes:
+      - id: acquisition
+        uri: lb://acquisition
+        predicates:
+        - Path=/acquisition/**
+        filters:
+        - RewritePath=/acquisition/(?<segment>.*), /$\{segment}
       - id: distribution
         uri: lb://distribution
         predicates:
-        - Path=/referential/**
+        - Path=/distribution/**
         filters:
-        - RewritePath=referential/(?.*), /$\{path}
+        - RewritePath=/distribution/(?<segment>.*), /$\{segment}
