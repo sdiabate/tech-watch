@@ -1,0 +1,12 @@
+# Start with a base image containing Java runtime
+FROM openjdk:8-jdk-alpine
+
+# Add Maintainer Info
+LABEL maintainer="sdiabagate@gmail.com"
+
+# Add a volume
+VOLUME D:/projects/turbo-settings
+ADD turbo-settings D:/projects/turbo-settings
+
+ARG RECOVERY_ADDRESS=10.10.10.10
+ENV SPRING_APPLICATION_JSON='{"eureka": {"client": {"serviceUrl": {"defaultZone": "http://'${RECOVERY_ADDRESS}':8082/eureka/"}}}}'
