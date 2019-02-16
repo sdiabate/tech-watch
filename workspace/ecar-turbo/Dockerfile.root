@@ -1,0 +1,18 @@
+# Start with a base image containing Java runtime
+FROM openjdk:8-jdk-alpine
+
+# Add Maintainer Info
+LABEL maintainer="sdiabagate@gmail.com"
+
+# Add a volume
+VOLUME D:/projects/turbo-settings
+ADD turbo-settings D:/projects/turbo-settings
+
+ARG DISCOVERY_ADDRESS=192.168.99.100
+#spring.cloud.config.uri=http://localhost:8081
+#ENV SPRING_APPLICATION_JSON='{"eureka": {"client": {"serviceUrl": {"defaultZone": "http://'${DISCOVERY_ADDRESS}':8082/eureka/"}}}, "spring": {"cloud": {"config": {"uri": "http://'${DISCOVERY_ADDRESS}':8081"}}}}'
+
+ENV discovery.host=${DISCOVERY_ADDRESS} \
+ discovery.port=8082 \
+ config.host=${DISCOVERY_ADDRESS} \
+ config.uri=file://D:/projects/turbo-settings
