@@ -1,0 +1,42 @@
+version: '2'
+services:
+    config:
+        container_name: config
+#         build:
+#             context: .
+#             dockerfile: Dockerfile.config
+        image: ecar-turbo-config:latest
+        expose:
+            - 8081
+        ports:
+            - 8081:8081   
+        networks:
+            - ecar-turbo-network
+#         volumes:
+#             - spring-cloud-config-repo:/var/lib/spring-cloud/config-repo
+        logging:
+            driver: json-file
+    discovery:
+        container_name: discovery
+#         build:
+#             context: .
+#             dockerfile: Dockerfile.discovery
+        image: ecar-turbo-discovery:latest
+        expose:
+            - 8082
+        ports:
+            - 8082:8082
+        networks:
+            - ecar-turbo-network
+        links:
+            - config:config
+        depends_on:
+            - config
+        logging:
+            driver: json-file
+networks:
+    ecar-turbo-network:
+        driver: bridge
+# volumes:
+#     spring-cloud-config-repo:
+#         external: true
